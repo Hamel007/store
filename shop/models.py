@@ -5,7 +5,8 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 
 class Category(MPTTModel):
-    """Категории товаров"""
+    """Категории товаров
+    """
     name = models.CharField(max_length=50, unique=True)
     parent = TreeForeignKey(
         'self',
@@ -23,8 +24,10 @@ class Category(MPTTModel):
 
 
 class Product(models.Model):
-    """Модель товара"""
-    category = models.ForeignKey(Category, verbose_name="Категория", on_delete=models.CASCADE)
+    """Модель товара
+    """
+    category = models.ForeignKey(Category, verbose_name="Категория",
+                                 on_delete=models.CASCADE)
     title = models.CharField("Название", max_length=150)
     description = models.TextField("Описание")
     price = models.IntegerField("Цена", default=0)
